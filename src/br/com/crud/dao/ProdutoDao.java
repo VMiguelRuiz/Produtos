@@ -35,7 +35,7 @@ public class ProdutoDao {
 		}
 	}
 
-	public List<Produto> getProdutos(Produto prod) {
+	public List<Produto> getProdutoTrechoNome(Produto prod) {
 		String scriptSQL = "select * from produto where nome like ?";
 		try {
 			List<Produto> produtos = new ArrayList<Produto>();
@@ -64,7 +64,7 @@ public class ProdutoDao {
 		}
 	}
 
-	public Produto getProdutoEspecifico(Produto produto) {
+	public Produto getProdutoNomeEspecifico(Produto produto) {
 		String scriptSQL = "select * from Produto where nome = ?";
 		try {
 			
@@ -89,5 +89,25 @@ public class ProdutoDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public List<Produto> getListaProdutos() throws SQLException{
+		String scriptSQL = "select * from produto";
+		PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
+		List<Produto> produtos = new ArrayList<Produto>();
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()){
+			Produto produto = new Produto();
+			produto.setId(rs.getInt("id"));
+			produto.setNome(rs.getString("nome"));
+			produto.setDescricao(rs.getString("descricao"));
+			produto.setValor(rs.getDouble("valor"));
+			produto.setUnidade(rs.getInt("unidade"));
+			
+			produtos.add(produto);
+		}
+		rs.close();
+		stmt.close();
+		return produtos;
 	}
 }

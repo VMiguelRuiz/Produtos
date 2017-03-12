@@ -37,15 +37,17 @@ public class PrincipalView {
 
 			case 2:
 				String buscaNome = JOptionPane.showInputDialog("Digite o nome");
-				controle.buscaEspecifica(buscaNome, dao);
+				controle.getProdutoNomeEspecifico(buscaNome, dao);
 				break;
 
 			case 3:
 				String buscaPorNome = JOptionPane.showInputDialog("Digite o nome");
 
-				controle.buscaProdutos(buscaPorNome, dao);
+				controle.getProdutoTrechoNome(buscaPorNome, dao);
 				break;
-
+			case 4:
+				controle.getListaProdutos(dao);
+				break;
 			}
 
 		} while (opcao != 9);

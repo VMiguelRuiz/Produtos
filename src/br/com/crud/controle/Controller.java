@@ -8,7 +8,7 @@ import br.com.crud.modelo.Produto;
 
 public class Controller {
 	Produto produto = new Produto();
-
+	
 	public void adicionaProduto(String nome, String descricao, double valor, int unidade, ProdutoDao dao)
 			throws SQLException {
 		produto.setNome(nome);
@@ -19,11 +19,12 @@ public class Controller {
 		dao.adiciona(produto);
 	}
 
-	public void buscaEspecifica(String nome, ProdutoDao dao) throws SQLException {
+	public void getProdutoNomeEspecifico(String nome, ProdutoDao dao) throws SQLException {
 
 		produto.setNome(nome);
-
-		dao.getProdutoEspecifico(produto);
+		
+		
+		dao.getProdutoNomeEspecifico(produto);
 		if (produto.getDescricao() == null && produto.getValor() == 0 && produto.getUnidade() == 0) {
 			this.resetaProduto();
 			System.out.println("Produto não encontrado \n");
@@ -34,11 +35,20 @@ public class Controller {
 		produto.setNome(null);
 	}
 
-	public void buscaProdutos(String nome, ProdutoDao dao) throws SQLException {
+	public void getProdutoTrechoNome(String nome, ProdutoDao dao) throws SQLException {
 		nome = "%"+ nome + "%";
 		produto.setNome(nome);
-		List<Produto> produtos = dao.getProdutos(produto);
+		List<Produto> produtos = dao.getProdutoTrechoNome(produto);
 		for (Produto produto : produtos) {
+			produto.printProduto(produto);
+		}
+		
+	}
+	
+	public void getListaProdutos(ProdutoDao dao) throws SQLException{
+		List<Produto> produtos = dao.getListaProdutos();
+		for (Produto produto : produtos) {
+			System.out.println("Id: " + produto.getId());
 			produto.printProduto(produto);
 		}
 	}
