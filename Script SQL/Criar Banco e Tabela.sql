@@ -1,3 +1,5 @@
+--Script utilizado no MySQL
+
 Create database Geral;
 
 Use database Geral;
