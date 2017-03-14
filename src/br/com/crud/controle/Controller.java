@@ -55,6 +55,11 @@ public class Controller {
 		}
 	}
 
+	public void removeProduto(int id, ProdutoDao dao) throws SQLException{
+		produto.setId(id);
+		dao.removeProduto(produto);
+	}
+	
 	//Metodo para resetar produto apos acao do metodo de buscaEspecifica
 	public void resetaProduto(){
 		produto.setNome(null);

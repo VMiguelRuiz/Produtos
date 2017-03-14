@@ -65,40 +65,40 @@ public class ProdutoDao {
 	}
 
 	public List<Produto> getProdutoNomeEspecifico(Produto produto) {
-			String scriptSQL = "select * from Produto where nome = ?";
-			try {
-				List<Produto> produtos = new ArrayList<Produto>();
-				PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
-				stmt.setString(1, produto.getNome());
-				stmt.execute();
+		String scriptSQL = "select * from Produto where nome = ?";
+		try {
+			List<Produto> produtos = new ArrayList<Produto>();
+			PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
+			stmt.setString(1, produto.getNome());
+			stmt.execute();
 
-				ResultSet rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 
-				while (rs.next()) {
-					Produto produtoList = new Produto();
-					produtoList.setNome(rs.getString("nome"));
-					produtoList.setDescricao(rs.getString("descricao"));
-					produtoList.setValor(rs.getDouble("valor"));
-					produtoList.setUnidade(rs.getInt("unidade"));
+			while (rs.next()) {
+				Produto produtoList = new Produto();
+				produtoList.setNome(rs.getString("nome"));
+				produtoList.setDescricao(rs.getString("descricao"));
+				produtoList.setValor(rs.getDouble("valor"));
+				produtoList.setUnidade(rs.getInt("unidade"));
 
-					produtos.add(produtoList);
-				}
-
-				rs.close();
-				stmt.close();
-				return produtos;
-
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
+				produtos.add(produtoList);
 			}
-		}
 
-	public List<Produto> getListaProdutos() throws SQLException{
+			rs.close();
+			stmt.close();
+			return produtos;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public List<Produto> getListaProdutos() throws SQLException {
 		String scriptSQL = "select * from produto order by nome";
 		PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
 		List<Produto> produtos = new ArrayList<Produto>();
 		ResultSet rs = stmt.executeQuery();
-		while(rs.next()){
+		while (rs.next()) {
 			Produto produto = new Produto();
 			produto.setId(rs.getInt("id"));
 			produto.setNome(rs.getString("nome"));
@@ -111,5 +111,17 @@ public class ProdutoDao {
 		rs.close();
 		stmt.close();
 		return produtos;
+	}
+
+	public void removeProduto(Produto produto) throws SQLException {
+		String scriptSQL = "delete from produto where id = ?";
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
+			stmt.setInt(1, produto.getId());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

@@ -1,20 +1,18 @@
 package br.com.crud.view.teste;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import br.com.crud.controle.Controller;
 import br.com.crud.dao.ProdutoDao;
-import br.com.crud.modelo.Produto;
 
 public class PrincipalView {
 	public static void main(String[] args) throws SQLException {
 		int opcao = 0;
 		Controller controle = new Controller();
 		ProdutoDao dao = new ProdutoDao();
-		Produto produto = new Produto();
+
 		do {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("1 - Adicionar novo Produto"
 					+ "\n2 - Buscar produto por nome especifico" + "\n3 - Buscar produto por trechos do nome"
@@ -39,9 +37,14 @@ public class PrincipalView {
 				String buscaPorNome = JOptionPane.showInputDialog("Digite o nome");
 				controle.getProdutoTrechoNome(buscaPorNome, dao);
 				break;
-				
+
 			case 4:
 				controle.getListaProdutos(dao);
+				break;
+				
+			case 5:
+				int id = Integer.parseInt(JOptionPane.showInputDialog("ID"));
+				controle.removeProduto(id, dao);
 				break;
 			}
 
