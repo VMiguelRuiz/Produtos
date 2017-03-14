@@ -17,7 +17,8 @@ public class PrincipalView {
 		Produto produto = new Produto();
 		do {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("1 - Adicionar novo Produto"
-					+ "\n2 - Buscar produto por nome especifico" + "\n3 - Buscar produto por trechos do nome"));
+					+ "\n2 - Buscar produto por nome especifico" + "\n3 - Buscar produto por trechos do nome"
+							+ "\n4 - Listar todos os produtos"	+ "\n9 - Sair"));
 
 			switch (opcao) {
 

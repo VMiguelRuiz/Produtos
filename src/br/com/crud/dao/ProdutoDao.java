@@ -92,7 +92,7 @@ public class ProdutoDao {
 	}
 	
 	public List<Produto> getListaProdutos() throws SQLException{
-		String scriptSQL = "select * from produto";
+		String scriptSQL = "select * from produto order by nome";
 		PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
 		List<Produto> produtos = new ArrayList<Produto>();
 		ResultSet rs = stmt.executeQuery();
