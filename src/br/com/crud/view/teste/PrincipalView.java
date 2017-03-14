@@ -16,7 +16,7 @@ public class PrincipalView {
 		do {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("1 - Adicionar novo Produto"
 					+ "\n2 - Buscar produto por nome especifico" + "\n3 - Buscar produto por trechos do nome"
-					+ "\n4 - Listar todos os produtos" + "\n9 - Sair"));
+					+ "\n4 - Listar todos os produtos" +  "\n5 - Alterar produto" + "\n6 - Remover Produto" + "\n9 - Sair"));
 
 			switch (opcao) {
 
@@ -43,7 +43,16 @@ public class PrincipalView {
 				break;
 				
 			case 5:
-				int id = Integer.parseInt(JOptionPane.showInputDialog("ID"));
+				int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do produto que será alterado"));
+				nome = JOptionPane.showInputDialog("Nome do produto");
+				descricao = JOptionPane.showInputDialog("Descricao do produto");
+				valor = Double.parseDouble(JOptionPane.showInputDialog("Valor do produto"));
+				unidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade em estoque do produto"));
+				controle.alteraProduto(id, dao, nome, descricao, valor, unidade);
+				break;
+				
+			case 6:
+				id = Integer.parseInt(JOptionPane.showInputDialog("Digite o Id do produto que será alterado"));
 				controle.removeProduto(id, dao);
 				break;
 			}

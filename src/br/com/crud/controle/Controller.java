@@ -60,6 +60,16 @@ public class Controller {
 		dao.removeProduto(produto);
 	}
 	
+	public void alteraProduto(int id, ProdutoDao dao, String nome, String descricao, double valor, int unidade) throws SQLException{
+		produto.setId(id);
+		produto.setNome(nome);
+		produto.setDescricao(descricao);
+		produto.setValor(valor);
+		produto.setUnidade(unidade);
+		
+		dao.alteraProduto(produto);
+	}
+	
 	//Metodo para resetar produto apos acao do metodo de buscaEspecifica
 	public void resetaProduto(){
 		produto.setNome(null);

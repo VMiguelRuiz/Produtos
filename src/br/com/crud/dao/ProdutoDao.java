@@ -124,4 +124,23 @@ public class ProdutoDao {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public void alteraProduto(Produto produto) throws SQLException{
+		String scriptSQL = "update produto set nome = ?, descricao = ?, valor = ?, unidade = ? where id = ?";
+		try{
+			PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
+			
+			stmt.setString(1, produto.getNome());
+			stmt.setString(2, produto.getDescricao());
+			stmt.setDouble(3, produto.getValor());
+			stmt.setInt(4, produto.getUnidade());
+			stmt.setInt(5, produto.getId());
+			
+			stmt.execute();
+			stmt.close();
+		}catch(SQLException e){
+			throw new RuntimeException (e);
+		}
+		
+	}
 }
