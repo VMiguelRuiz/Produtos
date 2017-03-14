@@ -18,22 +18,16 @@ public class PrincipalView {
 		do {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("1 - Adicionar novo Produto"
 					+ "\n2 - Buscar produto por nome especifico" + "\n3 - Buscar produto por trechos do nome"
-							+ "\n4 - Listar todos os produtos"	+ "\n9 - Sair"));
+					+ "\n4 - Listar todos os produtos" + "\n9 - Sair"));
 
 			switch (opcao) {
 
 			case 1:
-
 				String nome = JOptionPane.showInputDialog("Nome do produto");
-
 				String descricao = JOptionPane.showInputDialog("Descricao do produto");
-
 				double valor = Double.parseDouble(JOptionPane.showInputDialog("Valor do produto"));
-
 				int unidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade em estoque do produto"));
-
 				controle.adicionaProduto(nome, descricao, valor, unidade, dao);
-
 				break;
 
 			case 2:
@@ -43,9 +37,9 @@ public class PrincipalView {
 
 			case 3:
 				String buscaPorNome = JOptionPane.showInputDialog("Digite o nome");
-
 				controle.getProdutoTrechoNome(buscaPorNome, dao);
 				break;
+				
 			case 4:
 				controle.getListaProdutos(dao);
 				break;
