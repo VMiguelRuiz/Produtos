@@ -8,7 +8,7 @@ import br.com.crud.modelo.Produto;
 
 public class Controller {
 	Produto produto = new Produto();
-	
+
 	public void adicionaProduto(String nome, String descricao, double valor, int unidade, ProdutoDao dao)
 			throws SQLException {
 		produto.setNome(nome);
@@ -22,18 +22,20 @@ public class Controller {
 	public void getProdutoNomeEspecifico(String nome, ProdutoDao dao) throws SQLException {
 
 		produto.setNome(nome);
-		
-		
-		dao.getProdutoNomeEspecifico(produto);
-		if (produto.getDescricao() == null && produto.getValor() == 0 && produto.getUnidade() == 0) {
-			this.resetaProduto();
-			System.out.println("Produto n„o encontrado \n");
-		} else {
-			produto.printProduto(produto);
-			this.resetaProduto();
+
+		List<Produto> produtos = dao.getProdutoNomeEspecifico(produto);
+		for (Produto produto : produtos) {
+			if (produto.getDescricao() == null && produto.getValor() == 0 && produto.getUnidade() == 0) {
+				this.resetaProduto();
+				System.out.println("Produto n√£o encontrado \n");
+			} else {
+				produto.printProduto(produto);
+				this.resetaProduto();
+			}
+			produto.setNome(null);
 		}
-		produto.setNome(null);
 	}
+
 
 	public void getProdutoTrechoNome(String nome, ProdutoDao dao) throws SQLException {
 		nome = "%"+ nome + "%";
@@ -42,9 +44,9 @@ public class Controller {
 		for (Produto produto : produtos) {
 			produto.printProduto(produto);
 		}
-		
+
 	}
-	
+
 	public void getListaProdutos(ProdutoDao dao) throws SQLException{
 		List<Produto> produtos = dao.getListaProdutos();
 		for (Produto produto : produtos) {
@@ -52,7 +54,7 @@ public class Controller {
 			produto.printProduto(produto);
 		}
 	}
-	
+
 	//Metodo para resetar produto apos acao do metodo de buscaEspecifica
 	public void resetaProduto(){
 		produto.setNome(null);

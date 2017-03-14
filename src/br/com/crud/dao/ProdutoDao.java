@@ -39,12 +39,12 @@ public class ProdutoDao {
 		String scriptSQL = "select * from produto where nome like ?";
 		try {
 			List<Produto> produtos = new ArrayList<Produto>();
-			
+
 			PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
-			
+
 			stmt.setString(1, prod.getNome());
 			stmt.execute();
-			
+
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -64,33 +64,35 @@ public class ProdutoDao {
 		}
 	}
 
-	public Produto getProdutoNomeEspecifico(Produto produto) {
-		String scriptSQL = "select * from Produto where nome = ?";
-		try {
-			
-			PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
-			stmt.setString(1, produto.getNome());
-			stmt.execute();
-			
-			ResultSet rs = stmt.executeQuery();
+	public List<Produto> getProdutoNomeEspecifico(Produto produto) {
+			String scriptSQL = "select * from Produto where nome = ?";
+			try {
+				List<Produto> produtos = new ArrayList<Produto>();
+				PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
+				stmt.setString(1, produto.getNome());
+				stmt.execute();
 
-			while (rs.next()) {	
-				produto.setNome(rs.getString("nome"));
-				produto.setDescricao(rs.getString("descricao"));
-				produto.setValor(rs.getDouble("valor"));
-				produto.setUnidade(rs.getInt("unidade"));
+				ResultSet rs = stmt.executeQuery();
 
+				while (rs.next()) {
+					Produto produtoList = new Produto();
+					produtoList.setNome(rs.getString("nome"));
+					produtoList.setDescricao(rs.getString("descricao"));
+					produtoList.setValor(rs.getDouble("valor"));
+					produtoList.setUnidade(rs.getInt("unidade"));
+
+					produtos.add(produtoList);
+				}
+
+				rs.close();
+				stmt.close();
+				return produtos;
+
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
 			}
-			
-			rs.close();
-			stmt.close();
-			return produto;
-		
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
 		}
-	}
-	
+
 	public List<Produto> getListaProdutos() throws SQLException{
 		String scriptSQL = "select * from produto order by nome";
 		PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
@@ -103,7 +105,7 @@ public class ProdutoDao {
 			produto.setDescricao(rs.getString("descricao"));
 			produto.setValor(rs.getDouble("valor"));
 			produto.setUnidade(rs.getInt("unidade"));
-			
+
 			produtos.add(produto);
 		}
 		rs.close();
