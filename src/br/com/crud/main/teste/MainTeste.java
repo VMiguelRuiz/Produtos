@@ -16,7 +16,8 @@ public class MainTeste {
 		do {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("1 - Adicionar novo Produto"
 					+ "\n2 - Buscar produto por nome especifico" + "\n3 - Buscar produto por trechos do nome"
-					+ "\n4 - Listar todos os produtos" +  "\n5 - Alterar produto" + "\n6 - Remover Produto" + "\n9 - Sair"));
+					+ "\n4 - Listar todos os produtos" +  "\n5 - Alterar produto" 
+					+ "\n6 - Remover Produto" + "\n9 - Sair"));
 
 			switch (opcao) {
 
