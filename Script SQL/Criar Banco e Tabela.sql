@@ -9,5 +9,5 @@ Create table Produto(
   nome varchar(50),
   descricao varchar(255),
   valor double,
-  unidade int
+  quantidade int
 )
