@@ -25,8 +25,8 @@ public class MainTeste {
 				String nome = JOptionPane.showInputDialog("Nome do produto");
 				String descricao = JOptionPane.showInputDialog("Descricao do produto");
 				double valor = Double.parseDouble(JOptionPane.showInputDialog("Valor do produto"));
-				int unidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade em estoque do produto"));
-				logica.adicionaProduto(nome, descricao, valor, unidade, dao);
+				int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade em estoque do produto"));
+				logica.adicionaProduto(nome, descricao, valor, quantidade, dao);
 				break;
 
 			case 2:
@@ -48,8 +48,8 @@ public class MainTeste {
 				nome = JOptionPane.showInputDialog("Nome do produto");
 				descricao = JOptionPane.showInputDialog("Descricao do produto");
 				valor = Double.parseDouble(JOptionPane.showInputDialog("Valor do produto"));
-				unidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade em estoque do produto"));
-				logica.alteraProduto(id, dao, nome, descricao, valor, unidade);
+				quantidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade em estoque do produto"));
+				logica.alteraProduto(id, dao, nome, descricao, valor, quantidade);
 				break;
 				
 			case 6:

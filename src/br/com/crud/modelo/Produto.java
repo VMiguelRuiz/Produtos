@@ -5,7 +5,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private double valor;
-	private int unidade;
+	private int quantidade;
 
 	public int getId() {
 		return id;
@@ -39,12 +39,12 @@ public class Produto {
 		this.valor = valor;
 	}
 
-	public int getUnidade() {
-		return unidade;
+	public int getQuantidade() {
+		return quantidade;
 	}
 
-	public void setUnidade(int unidade) {
-		this.unidade = unidade;
+	public void setQuantidade(int unidade) {
+		this.quantidade = unidade;
 	}
 
 	public void printProduto(Produto produto){
@@ -52,6 +52,6 @@ public class Produto {
 		System.out.println("Nome: " + produto.nome);
 		System.out.println("Descricao: " + produto.descricao);
 		System.out.println("Valor " + produto.valor);
-		System.out.println("Unidade " + produto.unidade +"\n");
+		System.out.println("Unidade " + produto.quantidade +"\n");
 	}
 }

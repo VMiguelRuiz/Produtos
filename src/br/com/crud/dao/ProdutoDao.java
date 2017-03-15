@@ -18,14 +18,14 @@ public class ProdutoDao {
 	}
 
 	public void adiciona(Produto produto) {
-		String scriptSQL = "insert into produto (nome, descricao, valor, unidade) values(?,?,?,?)";
+		String scriptSQL = "insert into produto (nome, descricao, valor, quantidade) values(?,?,?,?)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(scriptSQL);
 
 			stmt.setString(1, produto.getNome());
 			stmt.setString(2, produto.getDescricao());
 			stmt.setDouble(3, produto.getValor());
-			stmt.setInt(4, produto.getUnidade());
+			stmt.setInt(4, produto.getQuantidade());
 
 			stmt.execute();
 			stmt.close();
@@ -52,7 +52,7 @@ public class ProdutoDao {
 				produto.setNome(rs.getString("nome"));
 				produto.setDescricao(rs.getString("descricao"));
 				produto.setValor(rs.getDouble("valor"));
-				produto.setUnidade(rs.getInt("unidade"));
+				produto.setQuantidade(rs.getInt("quantidade"));
 
 				produtos.add(produto);
 			}
@@ -79,7 +79,7 @@ public class ProdutoDao {
 				produtoList.setNome(rs.getString("nome"));
 				produtoList.setDescricao(rs.getString("descricao"));
 				produtoList.setValor(rs.getDouble("valor"));
-				produtoList.setUnidade(rs.getInt("unidade"));
+				produtoList.setQuantidade(rs.getInt("quantidade"));
 
 				produtos.add(produtoList);
 			}
@@ -104,7 +104,7 @@ public class ProdutoDao {
 			produto.setNome(rs.getString("nome"));
 			produto.setDescricao(rs.getString("descricao"));
 			produto.setValor(rs.getDouble("valor"));
-			produto.setUnidade(rs.getInt("unidade"));
+			produto.setQuantidade(rs.getInt("quantidade"));
 
 			produtos.add(produto);
 		}
@@ -126,14 +126,14 @@ public class ProdutoDao {
 	}
 
 	public void alteraProduto(Produto produto) throws SQLException{
-		String scriptSQL = "update produto set nome = ?, descricao = ?, valor = ?, unidade = ? where id = ?";
+		String scriptSQL = "update produto set nome = ?, descricao = ?, valor = ?, quantidade = ? where id = ?";
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(scriptSQL);
 			
 			stmt.setString(1, produto.getNome());
 			stmt.setString(2, produto.getDescricao());
 			stmt.setDouble(3, produto.getValor());
-			stmt.setInt(4, produto.getUnidade());
+			stmt.setInt(4, produto.getQuantidade());
 			stmt.setInt(5, produto.getId());
 			
 			stmt.execute();

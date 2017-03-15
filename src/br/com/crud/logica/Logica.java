@@ -14,7 +14,7 @@ public class Logica {
 		produto.setNome(nome);
 		produto.setDescricao(descricao);
 		produto.setValor(valor);
-		produto.setUnidade(unidade);
+		produto.setQuantidade(unidade);
 
 		dao.adiciona(produto);
 	}
@@ -25,9 +25,9 @@ public class Logica {
 
 		List<Produto> produtos = dao.getProdutoNomeEspecifico(produto);
 		for (Produto produto : produtos) {
-			if (produto.getDescricao() == null && produto.getValor() == 0 && produto.getUnidade() == 0) {
+			if (produto.getDescricao() == null && produto.getValor() == 0 && produto.getQuantidade() == 0) {
 				this.resetaProduto();
-				System.out.println("Produto não encontrado \n");
+				System.out.println("Produto nao encontrado \n");
 			} else {
 				produto.printProduto(produto);
 				this.resetaProduto();
@@ -60,12 +60,12 @@ public class Logica {
 		dao.removeProduto(produto);
 	}
 	
-	public void alteraProduto(int id, ProdutoDao dao, String nome, String descricao, double valor, int unidade) throws SQLException{
+	public void alteraProduto(int id, ProdutoDao dao, String nome, String descricao, double valor, int quantidade) throws SQLException{
 		produto.setId(id);
 		produto.setNome(nome);
 		produto.setDescricao(descricao);
 		produto.setValor(valor);
-		produto.setUnidade(unidade);
+		produto.setQuantidade(quantidade);
 		
 		dao.alteraProduto(produto);
 	}
@@ -75,6 +75,6 @@ public class Logica {
 		produto.setNome(null);
 		produto.setDescricao(null);
 		produto.setValor(0);
-		produto.setUnidade(0);
+		produto.setQuantidade(0);
 	}
 }
